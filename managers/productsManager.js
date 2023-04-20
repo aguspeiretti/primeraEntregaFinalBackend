@@ -21,10 +21,24 @@ export default class ProductsManager {
       console.log(error);
     }
   };
+  getElementById = async (id) => {
+    try {
+      const products = await this.getProducts();
+
+      const findProduct = products.find((p) => p.id === id);
+
+      findProduct
+        ? console.log(findProduct)
+        : console.log("error product not found");
+      null;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   addProduct = async ({
     title,
     description,
-    thumnail,
+    thumnails,
     code,
     price,
     status,
@@ -36,14 +50,14 @@ export default class ProductsManager {
       const product = {
         title: title,
         description: description,
-        thumnail: thumnail,
+        thumnail: thumnails,
         code: code,
         price: price,
         status: status,
         category: category,
       };
       if (
-        (!title, !description, !thumnail, !code, !price, !status, !category)
+        (!title, !description, !thumnails, !code, !price, !status, !category)
       ) {
         console.log("complete todos los campos");
         return null;
