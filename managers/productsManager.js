@@ -25,12 +25,13 @@ export default class ProductsManager {
     try {
       const products = await this.getProducts();
 
-      const findProduct = products.find((p) => p.id === id);
+      const findProduct = products.find((p) => p.id == id);
 
       findProduct
         ? console.log(findProduct)
         : console.log("error product not found");
       null;
+      return findProduct;
     } catch (error) {
       console.log(error);
     }

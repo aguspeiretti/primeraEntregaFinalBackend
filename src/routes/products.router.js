@@ -21,10 +21,15 @@ router.get(`/`, async (req, res) => {
 });
 
 router.get(`/:pId`, async (req, res) => {
-  const idProducts = req.params.pId;
-  const allProducts = await products;
-  const selected = allProducts.find((p) => p.id == idProducts);
-  res.send(selected);
+  try {
+    const idProduct = req.params.pId;
+    const allProducts = await products;
+    const selected = allProducts.find((p) => p.id == idProduct);
+    productsManager.getElementById(idProduct);
+    res.send({ status: "succes", message: "product get" });
+  } catch (error) {
+    res.status(404).send({ status: "error", error: "not found" });
+  }
 });
 
 router.post(`/`, async (req, res) => {
@@ -33,6 +38,7 @@ router.post(`/`, async (req, res) => {
     productsManager.addProduct(newContent);
     res.send({ status: "succes", message: "product posted" });
   } catch (error) {
+    res.status(404).send({ status: "error", error: "not found" });
     console.log(error);
   }
 });
