@@ -48,13 +48,13 @@ export default class ProductsManager {
       const products = await this.getProducts();
 
       const product = {
-        title: title,
-        description: description,
-        thumnail: thumnails,
-        code: code,
-        price: price,
-        status: status,
-        category: category,
+        title,
+        description,
+        thumnails,
+        code,
+        price,
+        status,
+        category,
       };
       if (
         (!title, !description, !thumnails, !code, !price, !status, !category)
